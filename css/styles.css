@@ -2,6 +2,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     background: white;
+    background-color: rgba(250, 250, 248,1);
 }
 
 circle {fill:orange;stroke:orange;fill-opacity:0.5;}
@@ -32,10 +33,4 @@ circle {fill:orange;stroke:orange;fill-opacity:0.5;}
     width: 18px;
     margin-right: 8px;
     float: right;
-}
-
-#carouselStockton{
-  width: 100%;
-  height: 400px;
-  background-color: grey;
 }
