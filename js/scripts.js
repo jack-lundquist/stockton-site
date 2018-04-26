@@ -64,3 +64,43 @@ legend.onAdd = function(map) {
 };
 
 legend.addTo(map);
+
+var ST1=5;
+var ST2=1;
+var Walk=5;
+var Bike=2;
+var Transit=7;
+var Drive=5;
+var MarginalDestination=0.1;
+
+var features = studyParcels.features;
+
+var FC = {
+    type: 'FeatureCollection',
+    features: features,
+  };
+// filteredLayer.clearLayers();
+  // create a Leaflet geojson layer from the FeatureCollection
+var j = 0;
+var parkFeatures = parks.features;
+function updateScore(feature, layer) {
+  feature.properties.POLY_CODE = 0;
+  var score = 0;
+  for (var i = 0; i < parkFeatures.length; i++) {
+    var marginalDFactor = (1-(MarginalDestination*i))
+    if (marginalDFactor > 0) {
+        console.log(((bikeScores[i][j] * Bike) + (walkScores[i][j] * Walk) + (transitScores[i][j] * Transit) + (driveScores[i][j] * Drive)))
+        score += (marginalDFactor*((bikeScores[i][j] * Bike) + (walkScores[i][j] * Walk) + (transitScores[i][j] * Transit) + (driveScores[i][j] * Drive)));
+    } else {
+        score = score
+    }
+        // score += MarginalDestination*((bikeScores[i][j] * Bike) + (walkScores[i][j] * Walk) + (transitScores[i][j] * Transit) + (driveScores[i][j] * Drive));
+  };
+  console.log(score*ST1);
+  layer.feature.properties.POLY_CODE = score*ST1;
+  j = j + 1;
+};
+filteredLayer = L.geoJSON(FC, {
+  onEachFeature: updateScore,
+});
+console.log(filteredLayer);

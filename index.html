@@ -46,80 +46,145 @@
   <div id="body">
     <div class='container-fluid'>
       <div class="row">
-        <div class="col-xs-6 col-md-12" style="padding:0; width:100%; height: 400px;">
-          <div id="carouselStockton" class="carousel slide" data-ride="carousel" data-interval="false" style="padding:0; width:100%; height: 400px;">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselStockton" style='background-color:grey' data-slide-to="0" class="active"></li>
-              <li data-target="#carouselStockton" style='background-color:grey' data-slide-to="1"></li>
-              <li data-target="#carouselStockton" style='background-color:grey' data-slide-to="2"></li>
-              <li data-target="#carouselStockton" style='background-color:grey' data-slide-to="3"></li>
-              <li data-target="#carouselStockton" style='background-color:grey' data-slide-to="4"></li>
-              <li data-target="#carouselStockton" style='background-color:grey' data-slide-to="5"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="row">
-                  <div class="col-md-5">
-                    Context/background: Airport Corridor
-                  </div>
-                  <div class="col-xs-6 col-md-7">
-                    <div id='my-map'></div>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-md-5">
-                    survey etc suggests need for parks/pharmacies/sit-down restaurants
-                  </div>
-                  <div class="col-xs-6 col-md-7">
-                    Some charts here (maybe D3 / interactive if I get the time)
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-md-5">
-                    Our analysis show these are lacking in the area
-                  </div>
-                  <div class="col-xs-6 col-md-7">
-                    Some maps of our analysis
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-md-5">
-                    But: we have identified some parcels where, if developed, can greatly
-                    increase the accessibility of much needed services to Stocktonians in the area.
-                  </div>
-                  <div class="col-xs-6 col-md-7">
-                    Map of the parcels
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-md-5">
-                    Our proposal: build xyz, with xyz benefits.
-                  </div>
-                  <div class="col-xs-6 col-md-7">
-                    Some mockups of our design
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-md-5">
-                    Hyperlinks to where you can get more detail, elsewhere on the site or off the site.
-                  </div>
-                  <div class="col-xs-6 col-md-7">
-                    A nice picture
-                  </div>
-                </div>
-              </div>
+        <div class="col-md-6" style="padding:20px; width:100%;">
+          <h4>Accessibility Weighting</h4>
+          <button style='text-align: center; min-width:170px;' type="submit" class="btn btn-primary mb-2" onclick="presetFilter()">South Stockton Preset</button>
+          <div class="row">
+            <div class="col-md-4" style="padding:0px; width:100%;">
+              Goods & Services
+            </div>
+            <div class="col-md-4" style="padding:0px; width:100%;">
+              Absolute Value
+            </div>
+            <div class="col-md-4" style="padding:0px; width:100%;">
+              Marginal Value
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-4">
+              Sit Down Restaurants
+            </div>
+            <div class="col-md-4">
+              <input id="sitDownVal" type='number' class="form-control bfh-number" name="sitDownVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="sitDownMVal" type='number' class="form-control bfh-number" name="sitDownMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Grocery Stores
+            </div>
+            <div class="col-md-4">
+              <input id="groceryVal" type='number' class="form-control bfh-number" name="groceryVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="groceryMVal" type='number' class="form-control bfh-number" name="groceryMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Pharmacy
+            </div>
+            <div class="col-md-4">
+              <input id="pharmaVal" type='number' class="form-control bfh-number" name="pharmaVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="pharmaMVal" type='number' class="form-control bfh-number" name="pharmaMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Park
+            </div>
+            <div class="col-md-4">
+              <input id="parkVal" type='number' class="form-control bfh-number" name="parkVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="parkMVal" type='number' class="form-control bfh-number" name="parkMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Clothing Store
+            </div>
+            <div class="col-md-4">
+              <input id="clothingVal" type='number' class="form-control bfh-number" name="clothingVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="clothingMVal" type='number' class="form-control bfh-number" name="clothingMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Bank
+            </div>
+            <div class="col-md-4">
+              <input id="bankVal" type='number' class="form-control bfh-number" name="bankVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="bankMVal" type='number' class="form-control bfh-number" name="bankMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              Transit Modes
+            </div>
+            <div class="col-md-4">
+              Absolute Value
+            </div>
+            <div class="col-md-4">
+              Marginal Value
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Walk
+            </div>
+            <div class="col-md-4">
+              <input id="walkVal" type='number' class="form-control bfh-number" name="walkVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="walkMVal" type='number' class="form-control bfh-number" name="walkMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Bike
+            </div>
+            <div class="col-md-4">
+              <input id="bikeVal" type='number' class="form-control bfh-number" name="bikeVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="bikeMVal" type='number' class="form-control bfh-number" name="bikeMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Transit
+            </div>
+            <div class="col-md-4">
+              <input id="transitVal" type='number' class="form-control bfh-number" name="transitVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="transitMVal" type='number' class="form-control bfh-number" name="transitMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              Drive
+            </div>
+            <div class="col-md-4">
+              <input id="driveVal" type='number' class="form-control bfh-number" name="driveVal" data-min=0 data-max=10 min=0 max=10 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 10">
+            </div>
+            <div class="col-md-4">
+              <input id="driveMVal" type='number' class="form-control bfh-number" name="driveMVal" data-min=0 data-max=1 min=0 max=1 value=0 oninput='updateMap()' data-toggle="tooltip" data-placement="top" title="Input number from 0 to 1">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" style="padding:0;width:100%">
+          <div id='my-map'></div>
         </div>
       </div>
       <div class='row' >
@@ -164,6 +229,12 @@
     crossorigin=""></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js"></script>
   <script src='js/test.js'></script>
+  <script src='js/StudyParcels.js'></script>
+  <script src='js/bikeScores.js'></script>
+  <script src='js/transitScores.js'></script>
+  <script src='js/walkScores.js'></script>
+  <script src='js/driveScores.js'></script>
+  <script src='js/parks.js'></script>
   <script src="js/scripts.js"></script>
 </body>
 
